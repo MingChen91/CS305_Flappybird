@@ -39,6 +39,7 @@ SIGNAL Red_Data, Green_Data, Blue_Data, vert_sync_int,
 		reset, Ball_on, Direction			: std_logic;
 SIGNAL Size 								: std_logic_vector(9 DOWNTO 0);  
 SIGNAL Ball_Y_motion 						: std_logic_vector(9 DOWNTO 0);
+SIGNAL Ball_X_motion 						: std_logic_vector(9 DOWNTO 0);
 SIGNAL Ball_Y_pos, Ball_X_pos				: std_logic_vector(9 DOWNTO 0);
 SIGNAL pixel_row, pixel_column				: std_logic_vector(9 DOWNTO 0); 
 
@@ -51,7 +52,7 @@ BEGIN
 			 	pixel_row => pixel_row, pixel_column => pixel_column);
 
 Size <= CONV_STD_LOGIC_VECTOR(8,10);
-Ball_X_pos <= CONV_STD_LOGIC_VECTOR(320,10);
+--Ball_X_pos <= CONV_STD_LOGIC_VECTOR(320,10);
 
 		-- need internal copy of vert_sync to read
 vert_sync <= vert_sync_int;
@@ -65,11 +66,8 @@ Blue_Data <=  '1';
 RGB_Display: Process (Ball_X_pos, Ball_Y_pos, pixel_column, pixel_row, Size)
 BEGIN
 			-- Set Ball_on ='1' to display ball
- IF ('0' & Ball_X_pos <= pixel_column + Size) AND
- 			-- compare positive numbers only
- 	(Ball_X_pos + Size >= '0' & pixel_column) AND
- 	('0' & Ball_Y_pos <= pixel_row + Size) AND
- 	(Ball_Y_pos + Size >= '0' & pixel_row ) THEN
+			-- compare positive numbers only
+ IF ('0' & Ball_X_pos <= pixel_column + Size) AND 	(Ball_X_pos + Size >= '0' & pixel_column) AND 	('0' & Ball_Y_pos <= pixel_row + Size) AND 	(Ball_Y_pos + Size >= '0' & pixel_row ) THEN
  		Ball_on <= '1';
  	ELSE
  		Ball_on <= '0';
@@ -88,6 +86,15 @@ BEGIN
 			END IF;
 			-- Compute next ball Y position
 				Ball_Y_pos <= Ball_Y_pos + Ball_Y_motion;
+				
+			--IF ('0' & Ball_X_pos) >= CONV_STD_LOGIC_VECTOR(640,10) - Size THEN
+				Ball_X_motion <= - CONV_STD_LOGIC_VECTOR(1,10);
+			--ELSIF Ball_X_pos <= Size THEN
+				--Ball_X_motion <= CONV_STD_LOGIC_VECTOR(2,10);
+			--END IF;
+			-- Compute next ball X position
+				Ball_X_pos <= Ball_X_pos + Ball_X_motion;
+
 END process Move_Ball;
 
 END behavior;
