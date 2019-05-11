@@ -16,7 +16,6 @@ PACKAGE de0core IS
 	END COMPONENT;
 END de0core;
 
-			-- Bouncing Ball Video 
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.all;
 USE IEEE.STD_LOGIC_ARITH.all;
@@ -26,10 +25,10 @@ USE work.de0core.all;
 
 ENTITY ball IS
 Generic(ADDR_WIDTH: integer := 12; DATA_WIDTH: integer := 1);
-
    PORT(SIGNAL PB1, PB2, Clock 			: IN std_logic;
-        SIGNAL Red,Green,Blue 			: OUT std_logic;
-        SIGNAL Horiz_sync,Vert_sync		: OUT std_logic);		
+		SIGNAL Red,Green,Blue 			: OUT std_logic;
+        SIGNAL Horiz_sync,Vert_sync		: OUT std_logic;		
+		SIGNAL Mouse_Row,Mouse_Col		: IN std_logic_vector(9 DOWNTO 0));
 END ball;
 
 architecture behavior of ball is
@@ -39,7 +38,6 @@ SIGNAL Red_Data, Green_Data, Blue_Data, vert_sync_int,
 		reset, Ball_on, Direction			: std_logic;
 SIGNAL Size 								: std_logic_vector(9 DOWNTO 0);  
 SIGNAL Ball_Y_motion 						: std_logic_vector(9 DOWNTO 0);
-SIGNAL Ball_X_motion 						: std_logic_vector(9 DOWNTO 0);
 SIGNAL Ball_Y_pos, Ball_X_pos				: std_logic_vector(9 DOWNTO 0);
 SIGNAL pixel_row, pixel_column				: std_logic_vector(9 DOWNTO 0); 
 
@@ -52,50 +50,40 @@ BEGIN
 			 	pixel_row => pixel_row, pixel_column => pixel_column);
 
 Size <= CONV_STD_LOGIC_VECTOR(8,10);
---Ball_X_pos <= CONV_STD_LOGIC_VECTOR(320,10);
+Ball_X_pos <= mouse_Row;
+Ball_y_pos <= mouse_Col;
 
 		-- need internal copy of vert_sync to read
 vert_sync <= vert_sync_int;
 
-		-- Colors for pixel data on video signal
-Red_Data <=  NOT Ball_on;
-		-- Turn off Green and Blue when displaying ball
-Green_Data <= NOT Ball_on;
-Blue_Data <=  '1';
+ball_colour: process (Clock)
+begin
+	if rising_edge(clock) THEN
+		if pb1 = '1' THEN
+			Red_Data <=  '1';
+			Green_Data <= NOT Ball_on;
+			Blue_Data <=  NOT Ball_on;
+		else
+			Red_Data <=  NOT Ball_on;
+			Green_Data <= NOT Ball_on;
+			Blue_Data <= '1'; 
+		end if;
+	end if;
+end process ball_colour;
 
 RGB_Display: Process (Ball_X_pos, Ball_Y_pos, pixel_column, pixel_row, Size)
 BEGIN
-			-- Set Ball_on ='1' to display ball
-			-- compare positive numbers only
- IF ('0' & Ball_X_pos <= pixel_column + Size) AND 	(Ball_X_pos + Size >= '0' & pixel_column) AND 	('0' & Ball_Y_pos <= pixel_row + Size) AND 	(Ball_Y_pos + Size >= '0' & pixel_row ) THEN
+	-- Set Ball_on ='1' to display ball
+ 	IF ('0' & Ball_X_pos <= pixel_column + Size) AND
+ 			-- compare positive numbers only
+ 	(Ball_X_pos + Size >= '0' & pixel_column) AND
+ 	('0' & Ball_Y_pos <= pixel_row + Size) AND
+ 	(Ball_Y_pos + Size >= '0' & pixel_row ) THEN
  		Ball_on <= '1';
  	ELSE
  		Ball_on <= '0';
-END IF;
+	END IF;
 END process RGB_Display;
-
-Move_Ball: process
-BEGIN
-			-- Move ball once every vertical sync
-	WAIT UNTIL vert_sync_int'event and vert_sync_int = '1';
-			-- Bounce off top or bottom of screen
-			IF ('0' & Ball_Y_pos) >= CONV_STD_LOGIC_VECTOR(480,10) - Size THEN
-				Ball_Y_motion <= - CONV_STD_LOGIC_VECTOR(2,10);
-			ELSIF Ball_Y_pos <= Size THEN
-				Ball_Y_motion <= CONV_STD_LOGIC_VECTOR(2,10);
-			END IF;
-			-- Compute next ball Y position
-				Ball_Y_pos <= Ball_Y_pos + Ball_Y_motion;
-				
-			--IF ('0' & Ball_X_pos) >= CONV_STD_LOGIC_VECTOR(640,10) - Size THEN
-				Ball_X_motion <= - CONV_STD_LOGIC_VECTOR(1,10);
-			--ELSIF Ball_X_pos <= Size THEN
-				--Ball_X_motion <= CONV_STD_LOGIC_VECTOR(2,10);
-			--END IF;
-			-- Compute next ball X position
-				Ball_X_pos <= Ball_X_pos + Ball_X_motion;
-
-END process Move_Ball;
 
 END behavior;
 
