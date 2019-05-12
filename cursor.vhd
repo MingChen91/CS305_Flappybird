@@ -14,7 +14,7 @@ end entity cursor;
 architecture behaviour of cursor is 
     constant size : unsigned(9 downto 0) := "0000001000";
 begin
-    mouse_on <= '1' when unsigned(pixel_x)>=unsigned(mouse_x) and unsigned(pixel_x)<=unsigned (mouse_x) + size 
-                        and unsigned(pixel_y) >= unsigned(mouse_y) and unsigned(pixel_y) <= unsigned(mouse_x) + size else
+    mouse_on <= '1' when unsigned(pixel_x)>= unsigned(mouse_x) and unsigned(pixel_x)<=unsigned (mouse_x) + size 
+                        and unsigned(pixel_y) >= unsigned(mouse_y) and unsigned(pixel_y) <= unsigned(mouse_y) + size else
                 '0';
 end architecture behaviour;
