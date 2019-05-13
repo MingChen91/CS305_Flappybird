@@ -26,7 +26,6 @@ begin
 
 
     pixel_render: process (pixel_x)
-    variable counter : integer :=0;
     -- decides what colour the current pixel should be 
     -- sorted in an order of importance. 
     begin
