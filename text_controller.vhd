@@ -36,8 +36,10 @@ architecture behaviour of text_controller is
 			rom_mux_output=>char_data_int
 		);
 
-		character_address <="000001" when sw0 = '1' 
-			else "000010";
+		character_address <="000110" when pixel_column <= std_logic_vector(to_unsigned(32,10))--F
+			else "001100" when pixel_column <= std_logic_vector(to_unsigned(64,10))--L
+			else "000001" when pixel_column <= std_logic_vector(to_unsigned(96,10))--A
+			else "010000" when pixel_column <= std_logic_vector(to_unsigned(160,10));--p;
 		font_row_sel<=pixel_row(4 downto 2);
 		font_col_sel<=pixel_column (4 downto 2);
 		char_data_out<= '0' when (pixel_row)<= std_logic_vector(to_unsigned(448,10))

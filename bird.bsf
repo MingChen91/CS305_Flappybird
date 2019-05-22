@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 200 128)
+	(rect 16 16 208 128)
 	(text "bird" (rect 5 0 19 12)(font "Arial" ))
 	(text "inst" (rect 8 96 20 108)(font "Arial" ))
 	(port
@@ -52,13 +52,20 @@ applicable agreement for further details.
 		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port
-		(pt 184 32)
+		(pt 192 32)
+		(output)
+		(text "color[2..0]" (rect 0 0 38 12)(font "Arial" ))
+		(text "color[2..0]" (rect 133 27 171 39)(font "Arial" ))
+		(line (pt 192 32)(pt 176 32)(line_width 3))
+	)
+	(port
+		(pt 192 48)
 		(output)
 		(text "bird_on" (rect 0 0 29 12)(font "Arial" ))
-		(text "bird_on" (rect 134 27 163 39)(font "Arial" ))
-		(line (pt 184 32)(pt 168 32)(line_width 1))
+		(text "bird_on" (rect 142 43 171 55)(font "Arial" ))
+		(line (pt 192 48)(pt 176 48)(line_width 1))
 	)
 	(drawing
-		(rectangle (rect 16 16 168 96)(line_width 1))
+		(rectangle (rect 16 16 176 96)(line_width 1))
 	)
 )

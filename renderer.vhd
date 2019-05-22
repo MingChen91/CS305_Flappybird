@@ -6,6 +6,7 @@ entity renderer is
         mouse_on: in std_logic;
         pipe_on: in std_logic;
         bird_on: in std_logic;
+		  bird_color: in std_logic_vector(2 downto 0);
         pixel_x: in std_logic;
         r,g,b: out std_logic;
         text_on: in std_logic;
@@ -41,9 +42,9 @@ begin
                 b<='1';
             end if;
         elsif bird_on = '1' then
-            r<='1';
-            g<='0';
-            b<='0';                
+            r<=bird_color(0);
+            g<=bird_color(1);
+            b<=bird_color(2);              
         elsif pipe_on = '1' then
             r<='0';
             g<='1';
