@@ -807,7 +807,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 632 440 800 616)
+	(rect 640 440 808 616)
 	(text "renderer" (rect 5 0 45 12)(font "Arial" ))
 	(text "inst2" (rect 8 160 31 172)(font "Arial" ))
 	(port
@@ -1116,21 +1116,6 @@ applicable agreement for further details.
 	(pt 896 456)
 )
 (connector
-	(text "mouse_on" (rect 544 464 594 476)(font "Arial" ))
-	(pt 592 472)
-	(pt 632 472)
-)
-(connector
-	(text "pipe_on" (rect 554 480 591 492)(font "Arial" ))
-	(pt 592 488)
-	(pt 632 488)
-)
-(connector
-	(text "bird_on" (rect 554 496 589 508)(font "Arial" ))
-	(pt 592 504)
-	(pt 632 504)
-)
-(connector
 	(text "r" (rect 1130 440 1133 452)(font "Arial" ))
 	(pt 1120 456)
 	(pt 1240 456)
@@ -1160,41 +1145,56 @@ applicable agreement for further details.
 	(pt 488 456)
 )
 (connector
-	(text "pixel_x[0]" (rect 546 528 593 540)(font "Arial" ))
-	(pt 632 536)
-	(pt 592 536)
-)
-(connector
-	(text "char_data_out" (rect 520 544 589 556)(font "Arial" ))
-	(pt 632 552)
-	(pt 592 552)
-)
-(connector
-	(text "vsync" (rect 554 560 585 572)(font "Arial" ))
-	(pt 632 568)
-	(pt 592 568)
-)
-(connector
-	(pt 800 472)
-	(pt 896 472)
-)
-(connector
-	(pt 800 488)
-	(pt 896 488)
-)
-(connector
-	(pt 800 504)
-	(pt 896 504)
-)
-(connector
 	(text "bird_color[2..0]" (rect 424 424 497 436)(font "Arial" ))
 	(pt 496 440)
 	(pt 416 440)
 	(bus)
 )
 (connector
-	(text "bird_color[2..0]" (rect 511 512 584 524)(font "Arial" ))
-	(pt 632 520)
-	(pt 592 520)
+	(pt 896 472)
+	(pt 808 472)
+)
+(connector
+	(pt 896 488)
+	(pt 808 488)
+)
+(connector
+	(pt 896 504)
+	(pt 808 504)
+)
+(connector
+	(text "mouse_on" (rect 552 464 602 476)(font "Arial" ))
+	(pt 600 472)
+	(pt 640 472)
+)
+(connector
+	(text "pipe_on" (rect 562 480 599 492)(font "Arial" ))
+	(pt 600 488)
+	(pt 640 488)
+)
+(connector
+	(text "bird_on" (rect 562 496 597 508)(font "Arial" ))
+	(pt 600 504)
+	(pt 640 504)
+)
+(connector
+	(text "bird_color[2..0]" (rect 519 512 592 524)(font "Arial" ))
+	(pt 600 520)
+	(pt 640 520)
 	(bus)
+)
+(connector
+	(text "pixel_x[0]" (rect 554 528 601 540)(font "Arial" ))
+	(pt 600 536)
+	(pt 640 536)
+)
+(connector
+	(text "char_data_out" (rect 528 544 597 556)(font "Arial" ))
+	(pt 600 552)
+	(pt 640 552)
+)
+(connector
+	(text "vsync" (rect 562 560 593 572)(font "Arial" ))
+	(pt 600 568)
+	(pt 640 568)
 )
