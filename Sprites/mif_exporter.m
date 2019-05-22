@@ -3,21 +3,26 @@ clear;
 
 %loads the picture and gets its size
 img = imread('patrick48.jpg');
+%output file
+fid = fopen('outfile.mif','w');
 img2=img;
 
 height=size(img,1);
 width=size(img,2);
 
-fid = fopen('outfile.mif','w');
+
 count = 0;
 if (fid)
     % Print Header Files
+    fprintf(fid,'%% Game Sprite MIF %%\n');
+    fprintf(fid,'%% CS305 FlappyBirdProject %%\n');
+    fprintf(fid,'%% Tingkai Chen , Ming Chen %%\n');
     fprintf(fid,'WIDTH = 8;\n');
     fprintf(fid,'DEPTH = %d;\n',height*width);
     fprintf(fid,'ADDRESS_RADIX = HEX;\n');
     fprintf(fid,'DATA_RADIX = BIN;\n');
-    fprintf(fid,'%%Game Sprite MIF %%\n');
     fprintf(fid,'CONTENT BEGIN\n\n');
+    
     for row=1:height
        for col=1:width
           %gets each r g b in 8 bit value each
@@ -28,9 +33,9 @@ if (fid)
           Rb = dec2bin(R,8);
           Gb = dec2bin(G,8);
           Bb = dec2bin(B,8);
-          img2(row,col,1) = bin2dec([Rb(1:3) '00000']);
-          img2(row,col,2) = bin2dec([Gb(1:3) '00000']);
-          img2(row,col,3) = bin2dec([Bb(1:2) '000000']);
+          img2(row,col,1) = bin2dec([Rb(1:4) '0000']);
+          img2(row,col,2) = bin2dec([Gb(1:4) '0000']);
+          img2(row,col,3) = bin2dec([Bb(1:4) '0000']);
           %concatenate to 8 bit to represent all 3 colours
           Outbyte = [Rb(1:3) Gb(1:3) Bb(1:2)];
           %address in hex 
@@ -57,6 +62,7 @@ if (fid)
     fprintf(fid,'END;\n');
     fclose(fid);
     
-    imwrite(img2,'converted.png');
+    %output a compressed picture
+    imwrite(img2,'patrick_compressed.png');
 end
     

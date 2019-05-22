@@ -1,8 +1,10 @@
+% Game Sprite MIF %
+% CS305 FlappyBirdProject %
+% Tingkai Chen , Ming Chen %
 WIDTH = 8;
 DEPTH = 2304;
 ADDRESS_RADIX = HEX;
 DATA_RADIX = BIN;
-%Game Sprite MIF %
 CONTENT BEGIN
 
 000  : 01101101 ;
