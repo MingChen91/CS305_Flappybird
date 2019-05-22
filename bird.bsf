@@ -54,8 +54,8 @@ applicable agreement for further details.
 	(port
 		(pt 192 32)
 		(output)
-		(text "color[2..0]" (rect 0 0 38 12)(font "Arial" ))
-		(text "color[2..0]" (rect 133 27 171 39)(font "Arial" ))
+		(text "color[7..0]" (rect 0 0 38 12)(font "Arial" ))
+		(text "color[7..0]" (rect 133 27 171 39)(font "Arial" ))
 		(line (pt 192 32)(pt 176 32)(line_width 3))
 	)
 	(port

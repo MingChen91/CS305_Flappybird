@@ -6,9 +6,10 @@ entity renderer is
         mouse_on: in std_logic;
         pipe_on: in std_logic;
         bird_on: in std_logic;
-		  bird_color: in std_logic_vector(2 downto 0);
+		  bird_color: in std_logic_vector(7 downto 0);
         pixel_x: in std_logic;
-        r,g,b: out std_logic;
+        r,g: out std_logic_vector(2 downto 0);
+		  b: out std_logic_vector(1 downto 0);
         text_on: in std_logic;
         vsync: in std_logic
     );
@@ -33,35 +34,35 @@ begin
         if mouse_on = '1' then 
         -- if cursor collides with pipe, turn red
             if pipe_on = '1' then
-                r<='1';
-                g<='0';
-                b<='0';
+                r<="111";
+                g<="000";
+                b<="00";
             else 
-                r<='1';
-                g<='1';
-                b<='1';
+                r<="111";
+                g<="111";
+                b<="11";
             end if;
         elsif bird_on = '1' then
-            r<=bird_color(0);
-            g<=bird_color(1);
-            b<=bird_color(2);              
+            r<=bird_color(2 downto 0);
+            g<=bird_color(5 downto 3);
+            b<=bird_color(7 downto 6);              
         elsif pipe_on = '1' then
-            r<='0';
-            g<='1';
-            b<='0';
+            r<="000";
+            g<="111";
+            b<="00";
         elsif text_on = '1' then
-            r<='0';
-            g<='1';
-            b<='1';
+            r<="000";
+            g<="111";
+            b<="11";
         else 
             if hurt ='1' then -- hurt doesnt do anything atm
-                r<='1';
-                g<='1';
-                b<='0';
+                r<="111";
+                g<="111";
+                b<="00";
             else
-                r<='0';
-                g<='0';
-                b<='1';
+                r<="000";
+                g<="000";
+                b<="11";
             end if;
         end if;
     end process pixel_render;

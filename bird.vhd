@@ -7,7 +7,7 @@ entity bird is
         pixel_x,pixel_y : in std_logic_vector(9 downto 0);
         mouse_left : in std_logic;
         vertical_sync: in std_logic;
-		  color: out std_logic_vector(2 downto 0);
+		  color: out std_logic_vector(7 downto 0);
         bird_on: out std_logic
     );
 end entity bird;
@@ -25,7 +25,8 @@ bird_x <= to_unsigned(100,10);
 bird_on <= '1' when unsigned(pixel_x) >= bird_x and unsigned(pixel_x) <=bird_x + bird_width
                 and unsigned(pixel_y) >= bird_y and unsigned(pixel_y) <= bird_y + bird_height
             else '0';
-color <= "001";
+			--bbgggrrr
+color <= "00000111";
 bird_move:process
 begin
     -- if left click is pressed, fly up.

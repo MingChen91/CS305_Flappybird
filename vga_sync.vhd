@@ -5,8 +5,12 @@ use  IEEE.STD_LOGIC_ARITH.all;
 use  IEEE.STD_LOGIC_UNSIGNED.all;
 
 ENTITY VGA_SYNC IS
-	PORT(	clock_25Mhz, red, green, blue		: IN	STD_LOGIC;
-			red_out, green_out, blue_out, horiz_sync_out, vert_sync_out	: OUT	STD_LOGIC;
+	PORT(	clock_25Mhz	: IN	STD_LOGIC;
+			horiz_sync_out, vert_sync_out	: OUT	STD_LOGIC;
+			red, green: IN STD_LOGIC_VECTOR(2 downto 0);
+			blue : IN STD_LOGIC_VECTOR(1 downto 0);
+			red_out, green_out : OUT STD_LOGIC_VECTOR(2 downto 0);
+			blue_out : OUT STD_LOGIC_VECTOR(1 downto 0);
 			pixel_row, pixel_column: OUT STD_LOGIC_VECTOR(9 DOWNTO 0));
 END VGA_SYNC;
 
@@ -14,6 +18,8 @@ ARCHITECTURE a OF VGA_SYNC IS
 	SIGNAL horiz_sync, vert_sync : STD_LOGIC;
 	SIGNAL video_on, video_on_v, video_on_h : STD_LOGIC;
 	SIGNAL h_count, v_count :STD_LOGIC_VECTOR(9 DOWNTO 0);
+	SIGNAL red_current, green_current :STD_LOGIC_VECTOR(2 DOWNTO 0);
+	SIGNAL blue_current :STD_LOGIC_VECTOR(1 DOWNTO 0);
 
 BEGIN
 
@@ -79,9 +85,54 @@ BEGIN
 	END IF;
 
 -- Put all video signals through DFFs to elminate any delays that cause a blurry image
-		red_out <= red AND video_on;
-		green_out <= green AND video_on;
-		blue_out <= blue AND video_on;
+		if ((red(0) ='1' AND video_on='1'))then
+			red_current(0) <=red(0);
+		else
+			red_current(0) <='0';
+		end if;
+		if ((red(1) ='1' AND video_on='1'))then
+			red_current(1) <=red(1);
+		else
+			red_current(1) <='0';
+		end if;
+		if ((red(2) ='1' AND video_on='1'))then
+			red_current(2) <=red(2);
+		else
+			red_current(2) <='0';
+		end if;
+		red_out <= red_current;
+		
+		
+		if ((green(0) ='1' AND video_on='1'))then
+			green_current(0) <=green(0);
+		else
+			green_current(0) <='0';
+		end if;
+		if ((green(1) ='1' AND video_on='1'))then
+			green_current(1) <=green(1);
+		else
+			green_current(1) <='0';
+		end if;
+		if ((green(2) ='1' AND video_on='1'))then
+			green_current(2) <=green(2);
+		else
+			green_current(2) <='0';
+		end if;
+		green_out <= green_current;
+		
+		
+		if ((blue(0) ='1' AND video_on='1'))then
+			blue_current(0) <=blue(0);
+		else
+			blue_current(0) <='0';
+		end if;
+		if ((blue(1) ='1' AND video_on='1'))then
+			blue_current(1) <=blue(1);
+		else
+			blue_current(1) <='0';
+		end if;
+		blue_out <= blue_current;
+		
 		horiz_sync_out <= horiz_sync;
 		vert_sync_out <= vert_sync;
 
