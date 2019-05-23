@@ -2,9 +2,9 @@
 clear;
 
 %loads the picture and gets its size
-img = imread('cursor.jpg');
+img = imread('clouds.jpg');
 %output file
-fid = fopen('cursor.mif','w');
+fid = fopen('clouds.mif','w');
 img2=img;
 
 height=size(img,1);
