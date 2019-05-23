@@ -26,22 +26,14 @@ begin
 
     end process vsync_updates;
 
-
     pixel_render: process (pixel_x)
     -- decides what colour the current pixel should be 
     -- sorted in an order of importance. 
     begin
         if mouse_on = '1' then 
-        -- if cursor collides with pipe, turn red
-            if pipe_on = '1' then
-                r<="111";
-                g<="000";
-                b<="00";
-            else 
-                r<="111";
-                g<="111";
-                b<="11";
-            end if;
+				r<="111";
+				g<="111";
+				b<="11";
         elsif bird_on = '1' then
             r<=bird_color(2 downto 0);
             g<=bird_color(5 downto 3);
@@ -55,15 +47,9 @@ begin
             g<="111";
             b<="11";
         else 
-            if hurt ='1' then -- hurt doesnt do anything atm
-                r<="111";
-                g<="111";
-                b<="00";
-            else
-                r<="000";
-                g<="000";
-                b<="11";
-            end if;
+				r<="000";
+				g<="000";
+				b<="11";
         end if;
     end process pixel_render;
 end architecture behaviour;
