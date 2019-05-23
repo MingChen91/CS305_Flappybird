@@ -4,7 +4,7 @@
 -- MODULE: altsyncram 
 
 -- ============================================================
--- File Name: patrick_rom.vhd
+-- File Name: patrick.vhd
 -- Megafunction Name(s):
 -- 			altsyncram
 --
@@ -39,20 +39,21 @@ USE ieee.std_logic_1164.all;
 LIBRARY altera_mf;
 USE altera_mf.all;
 
-ENTITY patrick_rom IS
+ENTITY patrick IS
 	PORT
 	(
-		address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+		--address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+		x_pixel,y_pixel : in std_LOGIC_VECTOR(4 downto 0);
 		clock		: IN STD_LOGIC  := '1';
 		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
-END patrick_rom;
+END patrick;
 
 
-ARCHITECTURE SYN OF patrick_rom IS
+ARCHITECTURE SYN OF patrick IS
 
 	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (7 DOWNTO 0);
-
+	signal position : std_logic_vector(9 downto 0);
 
 
 	COMPONENT altsyncram
@@ -100,13 +101,12 @@ BEGIN
 		width_byteena_a => 1
 	)
 	PORT MAP (
-		address_a => address,
+		address_a => position,
 		clock0 => clock,
 		q_a => sub_wire0
 	);
 
-
-
+	position<=y_pixel & x_pixel;
 END SYN;
 
 -- ============================================================
@@ -161,9 +161,9 @@ END SYN;
 -- Retrieval info: CONNECT: @address_a 0 0 10 0 address 0 0 10 0
 -- Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 8 0 @q_a 0 0 8 0
--- Retrieval info: GEN_FILE: TYPE_NORMAL patrick_rom.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL patrick_rom.inc FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL patrick_rom.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL patrick_rom.bsf FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL patrick_rom_inst.vhd FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL patrick.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL patrick.inc FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL patrick.cmp TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL patrick.bsf FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL patrick_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: altera_mf

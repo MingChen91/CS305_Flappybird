@@ -2,9 +2,9 @@
 clear;
 
 %loads the picture and gets its size
-img = imread('patrick48.jpg');
+img = imread('cursor.jpg');
 %output file
-fid = fopen('outfile.mif','w');
+fid = fopen('cursor.mif','w');
 img2=img;
 
 height=size(img,1);
@@ -33,9 +33,9 @@ if (fid)
           Rb = dec2bin(R,8);
           Gb = dec2bin(G,8);
           Bb = dec2bin(B,8);
-          img2(row,col,1) = bin2dec([Rb(1:4) '0000']);
-          img2(row,col,2) = bin2dec([Gb(1:4) '0000']);
-          img2(row,col,3) = bin2dec([Bb(1:4) '0000']);
+          img2(row,col,1) = bin2dec([Rb(1:3) '000']);
+          img2(row,col,2) = bin2dec([Gb(1:3) '000']);
+          img2(row,col,3) = bin2dec([Bb(1:2) '00']);
           %concatenate to 8 bit to represent all 3 colours
           Outbyte = [Rb(1:3) Gb(1:3) Bb(1:2)];
           %address in hex 
@@ -63,6 +63,6 @@ if (fid)
     fclose(fid);
     
     %output a compressed picture
-    imwrite(img2,'patrick_compressed.png');
+    imwrite(img2,'output.png');
 end
     

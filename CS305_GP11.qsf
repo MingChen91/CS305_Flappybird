@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone III"
 set_global_assignment -name DEVICE EP3C16F484C6
-set_global_assignment -name TOP_LEVEL_ENTITY patrick_rom
+set_global_assignment -name TOP_LEVEL_ENTITY part1_Demo
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:06:28  MAY 11, 2019"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.0
@@ -75,18 +75,10 @@ set_location_assignment PIN_F12 -to seg0[5]
 set_location_assignment PIN_F13 -to seg0[6]
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VHDL_FILE seven_segment_decoder.vhd
-set_global_assignment -name VHDL_FILE vga_sync.vhd
-set_global_assignment -name VHDL_FILE mouse.VHD
-set_global_assignment -name VHDL_FILE char_rom.vhd
-set_global_assignment -name BDF_FILE part1_Demo.bdf
-set_global_assignment -name QIP_FILE PLL_25MHz.qip
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_K18 -to b1
 set_location_assignment PIN_J21 -to g1
 set_location_assignment PIN_H21 -to r1
-set_global_assignment -name VHDL_FILE text_controller.vhd
-set_global_assignment -name VHDL_FILE cursor.vhd
 set_location_assignment PIN_D15 -to seg2[0]
 set_location_assignment PIN_A16 -to seg2[1]
 set_location_assignment PIN_F14 -to seg2[6]
@@ -103,12 +95,24 @@ set_location_assignment PIN_F15 -to seg3[1]
 set_location_assignment PIN_B18 -to seg3[0]
 set_location_assignment PIN_A18 -to seg2_dec
 set_location_assignment PIN_G16 -to seg3_dec
-set_global_assignment -name VHDL_FILE pipe.vhd
-set_global_assignment -name VHDL_FILE renderer.vhd
-set_global_assignment -name VHDL_FILE bird.vhd
 set_location_assignment PIN_J6 -to sw0
-set_global_assignment -name QIP_FILE patrick_rom.qip
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VHDL_FILE cursor_rom.vhd
+set_global_assignment -name VHDL_FILE Sprites/patrick.vhd
+set_global_assignment -name VHDL_FILE seven_segment_decoder.vhd
+set_global_assignment -name VHDL_FILE vga_sync.vhd
+set_global_assignment -name VHDL_FILE mouse.VHD
+set_global_assignment -name VHDL_FILE char_rom.vhd
+set_global_assignment -name BDF_FILE part1_Demo.bdf
+set_global_assignment -name QIP_FILE PLL_25MHz.qip
+set_global_assignment -name VHDL_FILE text_controller.vhd
+set_global_assignment -name VHDL_FILE cursor.vhd
+set_global_assignment -name VHDL_FILE pipe.vhd
+set_global_assignment -name VHDL_FILE renderer.vhd
+set_global_assignment -name VHDL_FILE bird.vhd
+set_global_assignment -name QIP_FILE Sprites/patrick.qip
+set_global_assignment -name QIP_FILE patrick_rom.qip
+set_global_assignment -name QIP_FILE cursor_rom.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

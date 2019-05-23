@@ -23,7 +23,7 @@ architecture behaviour of text_controller is
 				font_row, font_col	:	IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 				clock				: 	IN STD_LOGIC ;
 				rom_mux_output		:	OUT STD_LOGIC
-			);
+				);
 		end component;
 		signal font_row_sel, font_col_sel : std_logic_vector (2 downto 0);
 		signal character_address : std_logic_vector (5 downto 0);
