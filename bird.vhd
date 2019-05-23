@@ -7,7 +7,7 @@ entity bird is
         pixel_x,pixel_y : in std_logic_vector(9 downto 0);
         mouse_left : in std_logic;
         vertical_sync: in std_logic;
-		  color: out std_logic_vector(2 downto 0);
+		color: out std_logic_vector(2 downto 0);
         bird_on: out std_logic
     );
 end entity bird;
@@ -17,7 +17,7 @@ architecture behaviour of bird is
     constant bird_width : unsigned (9 downto 0) := to_unsigned(20,10);
     signal bird_x, bird_y : unsigned (9 downto 0);
     signal bird_y_speed: unsigned (9 downto 0);
-
+	 	 
     begin
 -- where the bird hitbox is
 bird_x <= to_unsigned(100,10);
