@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP3C16F484) Path("D:/CS305_Flappybird/output_files/") File("CS305_GP11.sof") MfrSpec(OpMask(1));
+		Device PartName(EP3C16F484) Path("D:/CS305_Flappybird/CS305_Flappybird/output_files/") File("CS305_GP11.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

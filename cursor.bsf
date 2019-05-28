@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 216 128)
+	(rect 16 16 264 160)
 	(text "cursor" (rect 5 0 30 12)(font "Arial" ))
-	(text "inst" (rect 8 96 20 108)(font "Arial" ))
+	(text "inst" (rect 8 128 20 140)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -52,13 +52,34 @@ applicable agreement for further details.
 		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
-		(pt 200 32)
+		(pt 0 96)
+		(input)
+		(text "clk" (rect 0 0 10 12)(font "Arial" ))
+		(text "clk" (rect 21 91 31 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 248 32)
+		(output)
+		(text "mouse_Location[19..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "mouse_Location[19..0]" (rect 138 27 227 39)(font "Arial" ))
+		(line (pt 248 32)(pt 232 32)(line_width 3))
+	)
+	(port
+		(pt 248 48)
 		(output)
 		(text "mouse_on" (rect 0 0 42 12)(font "Arial" ))
-		(text "mouse_on" (rect 137 27 179 39)(font "Arial" ))
-		(line (pt 200 32)(pt 184 32)(line_width 1))
+		(text "mouse_on" (rect 185 43 227 55)(font "Arial" ))
+		(line (pt 248 48)(pt 232 48)(line_width 1))
+	)
+	(port
+		(pt 248 64)
+		(output)
+		(text "color[7..0]" (rect 0 0 38 12)(font "Arial" ))
+		(text "color[7..0]" (rect 189 59 227 71)(font "Arial" ))
+		(line (pt 248 64)(pt 232 64)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 184 96)(line_width 1))
+		(rectangle (rect 16 16 232 128)(line_width 1))
 	)
 )
